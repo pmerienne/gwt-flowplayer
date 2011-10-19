@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.google.gwt</groupId>
+	<artifactId>flowplayer</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>gwt-flowplayer</name>
+	<description>GWT wrapper for flowplayer</description>
+
+	<properties>
+		<!-- Compiler properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<!-- Dependencies version -->
+		<gwtVersion>2.3.0</gwtVersion>
+	</properties>
+
+	<build>
+		<!-- To include .gwt.xml file in jar -->
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+			</resource>
+		</resources>
+	</build>
+
+	<dependencies>
+		<!-- GWT -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+</project>

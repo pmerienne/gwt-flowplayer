@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<inherits name="com.google.gwt.user.User" />
+	<!-- Flowplayer javascript API -->
+	<script src="http://releases.flowplayer.org/js/flowplayer-3.2.6.min.js" />
+
+	<source path='client' />
+</module>

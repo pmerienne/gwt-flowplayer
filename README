@@ -1,0 +1,7 @@
+Setup video/audio for website using a wrapper of flowplayer -see http://flowplayer.org/index.html)
+
+Usage : 
+	<f:FlowPlayer width="500px" height="250px" source="http://server/my-flv-or-mp3.flv" />
+or
+	FlowPlayer player = new FlowPlayer("http://server/my-flv-or-mp3.flv");
+	RootPanel.get().add(player);
