@@ -12,20 +12,20 @@ public class Flow extends EventDispatcher {
 		}
 	}
 
-	public native Player createPlayer(String id)
-	/*-{
-		return $wnd.$f(id,
+	public native Player createPlayer(String id) /*-{
+		var player = $wnd.$f(id,
 				@com.google.gwt.flowplayer.client.wrapper.Flow::SWF_URL, {
 					clip : {
 						autoPlay : false,
 						autoBuffering : true
 					}
 				});
+		player.load();
+		return player;
 	}-*/;
 
-	public native Player createPlayer(String id, String sourceUrl)
-	/*-{
-		return $wnd.$f(id,
+	public native Player createPlayer(String id, String sourceUrl) /*-{
+		var player = $wnd.$f(id,
 				@com.google.gwt.flowplayer.client.wrapper.Flow::SWF_URL, {
 					clip : {
 						url : sourceUrl,
@@ -58,20 +58,19 @@ public class Flow extends EventDispatcher {
 						// TODO dispatch event
 					}
 				});
+		player.load();
+		return player;
 	}-*/;
 
-	public native Player getPlayer()
-	/*-{
+	public native Player getPlayer() /*-{
 		return $wnd.$f();
 	}-*/;
 
-	public native Player getPlayer(String id)
-	/*-{
+	public native Player getPlayer(String id) /*-{
 		return $wnd.$f(id);
 	}-*/;
 
-	private native boolean isWrapperLoaded()
-	/*-{
+	private native boolean isWrapperLoaded() /*-{
 		return typeof ($wnd.$f) == 'function';
 	}-*/;
 }
