@@ -9,12 +9,17 @@
 	<description>GWT wrapper for flowplayer</description>
 
 	<properties>
+		<!--Trick to deploy releases (using mvn release:perform) to the local file 
+			system. The release is actually performed from target/checkout, which is 
+			why we need those ../../ . Notice that after deployment, you should commit 
+			and push to the git repository. -->
+		<altDeploymentRepository>release-repo::default::file:../../releases</altDeploymentRepository>
 		<!-- Compiler properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<!-- Dependencies version -->
-		<gwtVersion>2.3.0</gwtVersion>
+		<gwt.version>2.3.0</gwt.version>
 	</properties>
 
 	<build>
@@ -24,15 +29,53 @@
 				<directory>src/main/java</directory>
 			</resource>
 		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.1</version><!--$NO-MVN-MAN-VER$ -->
+				<configuration>
+					<useReleaseProfile>false</useReleaseProfile>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.source}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 	<dependencies>
 		<!-- GWT -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<version>${gwtVersion}</version>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>release-repo</id>
+			<url>https://pmerienne@github.com/pmerienne/gwt-flowplayer/raw/master/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot-repo</id>
+			<url>https://pmerienne@github.com/pmerienne/gwt-flowplayer/raw/master/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<scm>
+		<connection>scm:git:git@github.com:pmerienne/gwt-flowplayer.git</connection>
+		<developerConnection>scm:git:git@github.com:pmerienne/gwt-flowplayer.git</developerConnection>
+		<url>scm:git:git@github.com:pmerienne/gwt-flowplayer.git</url>
+	</scm>
 </project>
